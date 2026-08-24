@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.so
+.DS_Store
+.idea/
+.vscode/
+.pytest_cache/
+.venv/
+.coverage
+output/
+temp/
+.h3_segment_cache/
