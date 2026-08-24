@@ -1,0 +1,34 @@
+[project]
+name = "comfyui-h3-segment-cache"
+description = "Disk-backed segment caching, final video concatenation, and in-node preview for MiniMax H3 long-video workflows in ComfyUI."
+version = "1.0.0"
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "imageio-ffmpeg>=0.5",
+]
+authors = [
+    { name = "Aeverlumi" },
+]
+keywords = ["comfyui", "minimax-h3", "video", "segment-cache", "long-video"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+]
+
+[project.urls]
+Homepage = "https://github.com/Aeverlumi/ComfyUI-H3-Segment-Cache"
+Repository = "https://github.com/Aeverlumi/ComfyUI-H3-Segment-Cache"
+Issues = "https://github.com/Aeverlumi/ComfyUI-H3-Segment-Cache/issues"
+
+[tool.comfy]
+PublisherId = "Aeverlumi"
+DisplayName = "H3 Segment Cache"
