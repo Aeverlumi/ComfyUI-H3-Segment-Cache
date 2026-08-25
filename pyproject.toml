@@ -1,7 +1,7 @@
 [project]
 name = "comfyui-h3-segment-cache"
 description = "Disk-backed segment caching, final video concatenation, and in-node preview for MiniMax H3 long-video workflows in ComfyUI."
-version = "1.0.0"
+version = "1.0.1"
 license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.10"
