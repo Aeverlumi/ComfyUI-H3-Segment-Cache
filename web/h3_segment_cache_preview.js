@@ -54,16 +54,19 @@ function normalizeFinalizeNode(node) {
     }
     node.widgets_values = values.slice();
 
-    const previousSerialize = node.onSerialize;
-    node.onSerialize = function (event) {
-        if (previousSerialize) previousSerialize.apply(this, arguments);
-        if (event && Array.isArray(event.widgets_values)) {
-            event.widgets_values = FINALIZE_WIDGETS.map((name, index) => {
-                const widget = this.widgets?.find((candidate) => candidate.name === name);
-                return widget?.value ?? values[index];
-            });
-        }
-    };
+    if (!node.__h3SerializeGuardInstalled) {
+        const previousSerialize = node.onSerialize;
+        node.onSerialize = function (event) {
+            if (previousSerialize) previousSerialize.apply(this, arguments);
+            if (event && Array.isArray(event.widgets_values)) {
+                event.widgets_values = FINALIZE_WIDGETS.map((name, index) => {
+                    const widget = this.widgets?.find((candidate) => candidate.name === name);
+                    return widget?.value ?? values[index];
+                });
+            }
+        };
+        node.__h3SerializeGuardInstalled = true;
+    }
 }
 
 function installPreview(node) {
@@ -150,6 +153,12 @@ function installPreview(node) {
 app.registerExtension({
     name: 'H3SegmentCache.Preview',
     nodeCreated(node) {
+        if (node.comfyClass === 'H3SegmentCacheFinalize' || node.type === 'H3SegmentCacheFinalize') {
+            normalizeFinalizeNode(node);
+            installPreview(node);
+        }
+    },
+    loadedGraphNode(node) {
         if (node.comfyClass === 'H3SegmentCacheFinalize' || node.type === 'H3SegmentCacheFinalize') {
             normalizeFinalizeNode(node);
             installPreview(node);
